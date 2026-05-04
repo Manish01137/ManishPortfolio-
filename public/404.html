@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — Lost in space · Manish Beniwal</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#07070C;color:#F5F5F7;font-family:Inter,system-ui,sans-serif;overflow:hidden;cursor:none}
+  body{
+    background-image:
+      radial-gradient(at 20% 10%,rgba(124,58,237,.18),transparent 55%),
+      radial-gradient(at 85% 25%,rgba(6,182,212,.14),transparent 55%);
+  }
+  .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+  h1{font-family:Sora,sans-serif;font-weight:800;font-size:clamp(80px,18vw,220px);line-height:1;letter-spacing:-0.04em;
+    background:linear-gradient(90deg,#7C3AED,#06B6D4,#EC4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p{margin-top:16px;color:#C9C9D4;max-width:520px;font-size:15px;line-height:1.6}
+  .game{margin-top:32px;display:inline-block;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px;background:rgba(255,255,255,.03);backdrop-filter:blur(12px)}
+  canvas{display:block;border-radius:8px;background:#0A0A12}
+  .hint{margin-top:10px;font-size:11px;color:#8B8B9C;letter-spacing:.18em;text-transform:uppercase}
+  a.home{margin-top:28px;display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;
+    background:linear-gradient(90deg,#7C3AED,#06B6D4);color:#fff;text-decoration:none;font-weight:500;font-size:14px;
+    box-shadow:0 8px 30px -8px rgba(124,58,237,.6);transition:transform .25s}
+  a.home:hover{transform:translateY(-2px)}
+  .score{position:fixed;top:24px;right:24px;font-family:Sora,sans-serif;color:#A0A0B0;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+</style>
+</head>
+<body>
+  <div class="score">Score · <span id="s">0</span></div>
+  <div class="wrap">
+    <h1>404</h1>
+    <p>This page drifted off into space. Catch the violet dot before it escapes — or head back home.</p>
+    <div class="game">
+      <canvas id="cv" width="420" height="220"></canvas>
+      <div class="hint">Move with your mouse · click the dot</div>
+    </div>
+    <a class="home" href="/">← Back to homepage</a>
+  </div>
+<script>
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  let score = 0, dot = spawn();
+  function spawn(){return{x:Math.random()*cv.width,y:Math.random()*cv.height,r:14,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3}}
+  let mx=-100,my=-100;
+  cv.addEventListener('mousemove',e=>{const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+  cv.addEventListener('click',()=>{const d=Math.hypot(dot.x-mx,dot.y-my);if(d<dot.r+10){score++;document.getElementById('s').textContent=score;dot=spawn();dot.vx*=1.1;dot.vy*=1.1}});
+  function loop(){
+    ctx.fillStyle='#0A0A12';ctx.fillRect(0,0,cv.width,cv.height);
+    dot.x+=dot.vx;dot.y+=dot.vy;
+    if(dot.x<dot.r||dot.x>cv.width-dot.r)dot.vx*=-1;
+    if(dot.y<dot.r||dot.y>cv.height-dot.r)dot.vy*=-1;
+    const g=ctx.createRadialGradient(dot.x,dot.y,2,dot.x,dot.y,dot.r);
+    g.addColorStop(0,'#EC4899');g.addColorStop(.6,'#7C3AED');g.addColorStop(1,'rgba(6,182,212,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(dot.x,dot.y,dot.r,0,Math.PI*2);ctx.fill();
+    if(mx>0){ctx.strokeStyle='rgba(255,255,255,.5)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(mx,my,8,0,Math.PI*2);ctx.stroke()}
+    requestAnimationFrame(loop);
+  }
+  loop();
+</script>
+</body>
+</html>
