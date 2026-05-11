@@ -37,7 +37,7 @@ export default function About() {
           <span className="section-label">About me</span>
           <h2 className="heading-lg mt-5">
             Engineering <span className="text-gradient-static">elegant solutions</span> from
-            frontend to cloud.
+            frontend & Backend to cloud.
           </h2>
           <p className="body-lg mt-6">
             I&apos;m Manish — a full-stack developer who treats every project like a product.
