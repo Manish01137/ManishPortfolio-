@@ -73,6 +73,26 @@ const shot = (url) => `https://image.thum.io/get/width/1200/crop/800/noanimate/$
 // Replace any URL below with another Unsplash photo if you want a different vibe.
 export const PROJECTS = [
   {
+    title: 'WorkSaura',
+    category: 'Creative Portfolio · Design',
+    desc: 'A bold, motion-rich portfolio for a graphic designer — full-screen project galleries, smooth page transitions and a tactile, gallery-grade browsing experience built to make the work the hero.',
+    tags: ['Next.js', 'Framer Motion', 'GSAP', 'Tailwind'],
+    accent: 'from-brand-pink to-brand-gold',
+    url: 'https://worksaura.com',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80',
+    screenshot: shot('https://worksaura.com')
+  },
+  {
+    title: 'IndiColas',
+    category: 'D2C Brand · Beverage',
+    desc: 'Vibrant brand experience for a homegrown fizzy-drink label — “Pop The Fizz.” Playful scroll storytelling, animated product reveals and a punchy, conversion-focused landing built to make a soda feel premium.',
+    tags: ['Next.js', 'Tailwind', 'GSAP', 'Vercel'],
+    accent: 'from-brand-cyan to-brand-pink',
+    url: 'https://indicolas.com',
+    image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',
+    screenshot: shot('https://indicolas.com')
+  },
+  {
     title: 'StayliaDXB',
     category: 'Real Estate · Hospitality',
     desc: 'End-to-end short-term rental management platform for Dubai holiday homes — multi-platform listings, dynamic pricing, guest comms and investor reporting.',
