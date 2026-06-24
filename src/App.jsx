@@ -7,6 +7,8 @@ import ScrollProgress from './components/ScrollProgress'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import SoundToggle from './components/SoundToggle'
 import KonamiEgg from './components/KonamiEgg'
+import CommandPalette from './components/CommandPalette'
+import AskWidget from './components/AskWidget'
 
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -17,6 +19,7 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import LogoWall from './components/LogoWall'
 import GitHubStats from './components/GitHubStats'
+import Experience from './components/Experience'
 import Process from './components/Process'
 import Pricing from './components/Pricing'
 import Testimonials from './components/Testimonials'
@@ -35,6 +38,8 @@ export default function App() {
       <Grain />
       <ScrollProgress />
       <KonamiEgg />
+      <CommandPalette />
+      <AskWidget />
       <ThemeSwitcher />
       <SoundToggle />
 
@@ -48,6 +53,7 @@ export default function App() {
         <Skills />
         <Projects />
         <GitHubStats />
+        <Experience />
         <Process />
         <Pricing />
         <Testimonials />

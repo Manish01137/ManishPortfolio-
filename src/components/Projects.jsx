@@ -70,9 +70,9 @@ function CaseStudyModal({ project, onClose }) {
           <div className="sm:col-span-2">
             <div className="grid grid-cols-3 gap-3">
               {[
-                { icon: Globe,  label: 'Status',  value: 'Live' },
-                { icon: Code2,  label: 'Role',    value: 'Full-stack' },
-                { icon: Layers, label: 'Year',    value: '2025' }
+                { icon: Globe,  label: 'Role', value: p.role || 'Full-stack' },
+                { icon: Code2,  label: 'Year', value: p.year || '2025' },
+                { icon: Layers, label: 'Status', value: 'Live' }
               ].map((m) => {
                 const Icon = m.icon
                 return (
@@ -85,17 +85,28 @@ function CaseStudyModal({ project, onClose }) {
               })}
             </div>
 
+            {p.metrics?.length > 0 && (
+              <div className="mt-4 grid grid-cols-3 gap-3">
+                {p.metrics.map((m) => (
+                  <div key={m.label} className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-center">
+                    <div className="font-display text-xl font-bold text-gradient-static">{m.value}</div>
+                    <div className="text-[10px] uppercase tracking-widest text-ink-400 mt-1">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <h4 className="heading-md text-lg mt-8">Overview</h4>
             <p className="body-lg mt-3">{p.desc}</p>
 
             <h4 className="heading-md text-lg mt-8">Highlights</h4>
             <ul className="mt-3 space-y-2.5">
-              {[
+              {(p.highlights || [
                 'Component-driven UI with Framer Motion micro-interactions',
-                'Type-safe API layer with auth, rate limiting and error boundaries',
+                'Type-safe API layer with auth and error boundaries',
                 'CI/CD pipeline auto-deploying to production on every merge',
                 'Observability with structured logs and uptime monitoring'
-              ].map((line) => (
+              ]).map((line) => (
                 <li key={line} className="flex gap-2 text-sm text-ink-200">
                   <Check size={16} className="mt-0.5 text-emerald-400 shrink-0" />
                   <span>{line}</span>
